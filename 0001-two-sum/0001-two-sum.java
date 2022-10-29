@@ -1,17 +1,22 @@
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
+    public int removeDuplicates(int[] nums) {
+       
+        int length = nums.length;
         
-        int[] returns = new int[2];
-        
-        for(int i=0;i<nums.length-1;i++){
-            for(int j=i+1; j<nums.length;j++){
-                if(nums[i]+nums[j]==target){
-                    returns[0]=i;
-                    returns[1]=j;
-                    break;
+        for(int i=0; i<length-1; i++){
+            for(int j=i+1; j<length; j++){
+                if(nums[j]==nums[i]){
+                    nums[j]=nums[length-1];
+                    nums[length-1]=nums[i];
+                    j--;
+                    length--;
+                }else if(nums[j]<nums[i]){
+                    int temp = nums[j];
+                    nums[j]=nums[i];
+                    nums[i]=temp;
                 }
             }
         }
-        return returns;  
+        return length;
     }
 }
